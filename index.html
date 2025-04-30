@@ -1,195 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">  <!-- 添加语言声明 -->
+<html lang="en">
 <head>
-  <!-- 优化meta信息 -->
   <meta charset="utf-8">
   <meta name="description" content="DualReal: Adaptive Joint Training for Lossless Identity-Motion Fusion in Video Customization">
-  <meta property="og:title" content="DualReal: Advanced Video Customization Framework"/>
-  <meta property="og:description" content="Achieving lossless identity-motion fusion through adaptive joint training in video customization"/>
-  <meta property="og:url" content="https://your-project-url.github.io"/>
-  <!-- 图片占位符 -->
-  <meta property="og:image" content="<image-banner-social>" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+  <!-- 简化社交媒体元信息 -->
+  <meta property="og:title" content="DualReal: Video Customization Framework"/>
+  <meta property="og:description" content="Achieving identity-motion fusion through adaptive joint training"/>
+  <meta property="og:image" content="<image-banner-social>">
 
-  <!-- Twitter卡片优化 -->
-  <meta name="twitter:title" content="DualReal Video Customization Framework">
-  <meta name="twitter:description" content="Pioneering identity-motion fusion technology for video generation">
-  <meta name="twitter:image" content="<image-twitter-social>">
   <meta name="twitter:card" content="summary_large_image">
-  
-  <!-- 关键词优化 -->
-  <meta name="keywords" content="video customization, identity preservation, motion transfer, deep learning">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  <!-- 添加移动端优化 -->
+  <meta name="keywords" content="video generation, deep learning, identity preservation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>DualReal: Identity-Motion Fusion in Video Customization</title>
+  <title>DualReal</title>
   
-  <!-- 样式表优化 -->
+  <!-- 简化样式表 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/main.min.css"> <!-- 建议合并CSS -->
-  
-  <!-- 新增渐变背景 -->
   <style>
-    :root {
-      --gradient-start: #4f8bf9;
-      --gradient-end: #8a2be2;
+    /* 参考网站基础样式 */
+    body {
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      color: #333;
     }
-    .hero-gradient {
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      color: white;
+    
+    .section {
+      padding: 4rem 1.5rem;
     }
-    .section-highlight {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      margin: 2rem auto;
-      padding: 2.5rem;
+    
+    .title {
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    .paper-title {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .author-list {
+      font-size: 1.1rem;
+      margin: 1.5rem 0;
+    }
+
+    .content-block {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      margin: 2rem 0;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 
 <body>
-  <!-- 新增导航栏 -->
-  <nav class="navbar is-fixed-top has-shadow">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <strong>DualReal</strong>
+  <!-- 简化Header部分 -->
+  <section class="section">
+    <div class="content-block">
+      <h1 class="title paper-title has-text-centered">
+        DualReal: Adaptive Joint Training for<br>Lossless Identity-Motion Fusion
+      </h1>
+      
+      <div class="author-list has-text-centered">
+        <span>Wenchuan Wang<sup>1</sup>,</span>
+        <span>Mengqi Huang<sup>1</sup>,</span>
+        <span>Yijing Tu<sup>1</sup>,</span>
+        <span>Zhendong Mao<sup>1*</sup></span>
+        <div class="institution mt-2">
+          <sup>1</sup>University of Science and Technology of China
+        </div>
+      </div>
+
+      <!-- 简化按钮 -->
+      <div class="buttons is-centered are-medium">
+        <a href="#paper" class="button is-rounded">
+          <span class="icon"><i class="fas fa-file-pdf"></i></span>
+          <span>Paper (PDF)</span>
         </a>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-end">
-          <a class="navbar-item" href="#abstract">Abstract</a>
-          <a class="navbar-item" href="#demo">Demos</a>
-          <a class="navbar-item" href="#video">Video</a>
-          <a class="navbar-item" href="#citation">Citation</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- 优化后的Hero Section -->
-  <section class="hero hero-gradient is-medium">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title is-1 is-spaced">DualReal</h1>
-        <h2 class="subtitle is-4">
-          Adaptive Joint Training for Lossless Identity-Motion Fusion<br>
-          in Video Customization
-        </h2>
-        
-        <!-- 作者信息优化 -->
-        <div class="author-block">
-          <div class="tags is-centered are-medium">
-            <span class="tag"><a href="mailto:wenc_k@mail.ustc.edu.cn">Wenchuan Wang</a></span>
-            <span class="tag"><a href="mailto:huangmq@mail.ustc.edu.cn">Mengqi Huang</a></span>
-            <span class="tag"><a href="mailto:tuyijing@mail.ustc.edu.cn">Yijing Tu</a></span>
-            <span class="tag is-primary"><a href="mailto:zdmao@ustc.edu.cn">Zhendong Mao*</a></span>
-          </div>
-          <div class="institution">University of Science and Technology of China</div>
-        </div>
-
-        <!-- 按钮组优化 -->
-        <div class="buttons is-centered mt-5">
-          <a href="#paper" class="button is-primary is-medium">
-            <span class="icon"><i class="fas fa-file-pdf"></i></span>
-            <span>Paper (Coming Soon)</span>
-          </a>
-          <a href="#code" class="button is-dark is-medium">
-            <span class="icon"><i class="fab fa-github"></i></span>
-            <span>Code (Coming Soon)</span>
-          </a>
-        </div>
+        <a href="#code" class="button is-rounded is-dark">
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>Code</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 摘要部分优化 -->
-  <section id="abstract" class="section section-highlight">
-    <div class="container is-max-desktop">
+  <!-- 摘要部分 -->
+  <section class="section" style="background: #f8f9fa;">
+    <div class="content-block">
       <h2 class="title is-3 has-text-centered">Abstract</h2>
-      <div class="content has-text-justified">
-        <p class="has-text-grey-dark">
-          [在此处填写摘要内容。参考网站使用简洁的两段式结构，建议保持学术严谨的同时增强可读性]
+      <div class="content">
+        <p>
+          [在此处填写摘要内容，保持2-3段简洁描述。参考示例网站使用学术性但易懂的语言，首段说明问题和方法，次段描述技术贡献，末段验证效果]
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 演示内容轮播优化 -->
-  <section id="demo" class="section">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered mb-6">Method Overview</h2>
-      
-      <!-- 图片占位符 -->
-      <div class="columns is-multiline is-centered">
-        <div class="column is-8">
-          <figure class="image is-16by9">
-            <img src="<image-method-overview>" alt="Method overview diagram" class="has-radius">
-          </figure>
-        </div>
+  <!-- 主展示视频 -->
+  <section class="section">
+    <div class="content-block">
+      <h2 class="title is-3 has-text-centered">Video Demo</h2>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/<video-youtube-id>" frameborder="0" allowfullscreen></iframe>
       </div>
+    </div>
+  </section>
 
-      <!-- 对比展示 -->
+  <!-- 方法图示 -->
+  <section class="section" style="background: #f8f9fa;">
+    <div class="content-block">
+      <h2 class="title is-3 has-text-centered">Method Overview</h2>
+      <div class="has-text-centered">
+        <img src="<image-method-diagram>" alt="Method diagram" style="max-width: 90%;">
+      </div>
+      <div class="content mt-4">
+        <p>[在此添加方法图示的简要说明，保持2-3句核心要点]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 对比结果 -->
+  <section class="section">
+    <div class="content-block">
+      <h2 class="title is-3 has-text-centered">Comparison Results</h2>
       <div class="columns is-vcentered">
         <div class="column">
-          <h3 class="title is-4 has-text-centered">Input</h3>
-          <video class="has-radius" autoplay muted loop>
-            <source src="<video-input-demo>" type="video/mp4">
+          <h3 class="title is-5 has-text-centered">Baseline</h3>
+          <video muted controls style="width: 100%;">
+            <source src="<video-baseline>" type="video/mp4">
           </video>
         </div>
         <div class="column">
-          <h3 class="title is-4 has-text-centered">Output</h3>
-          <video class="has-radius" autoplay muted loop>
-            <source src="<video-output-demo>" type="video/mp4">
+          <h3 class="title is-5 has-text-centered">Our Method</h3>
+          <video muted controls style="width: 100%;">
+            <source src="<video-our-result>" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 视频展示优化 -->
-  <section id="video" class="section section-highlight">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Video Presentation</h2>
-      
-      <!-- YouTube视频容器 -->
-      <div class="video-container has-radius">
-        <iframe src="https://www.youtube.com/embed/<video-youtube-id>" 
-                frameborder="0" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- 引用部分优化 -->
-  <section id="citation" class="section">
-    <div class="container is-max-desktop">
+  <!-- 引用部分 -->
+  <section class="section" style="background: #f8f9fa;">
+    <div class="content-block">
       <h2 class="title is-3 has-text-centered">Citation</h2>
-      <pre class="citation-box has-background-light p-5"><code>@article{duelreal2024,
-  title={DualReal: Adaptive Joint Training for Lossless Identity-Motion Fusion in Video Customization},
+      <pre style="background: #fff; padding: 1.5rem; border-radius: 4px;"><code>@article{dualreal2024,
+  title={DualReal: Adaptive Joint Training for Lossless Identity-Motion Fusion},
   author={Wang, Wenchuan and Huang, Mengqi and Tu, Yijing and Mao, Zhendong},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2024}
 }</code></pre>
     </div>
   </section>
 
-  <!-- 页脚优化 -->
-  <footer class="footer has-background-dark has-text-white">
+  <!-- 简化页脚 -->
+  <footer class="footer">
     <div class="content has-text-centered">
       <p>
-        © 2024 USTC. Built with 
-        <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" class="has-text-primary">Academic Template</a>.
-        Licensed under 
-        <a class="has-text-primary" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+        © 2024 USTC. Website template adapted from 
+        <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>
       </p>
     </div>
   </footer>
 
-  <!-- 脚本优化 -->
+  <!-- 基础脚本 -->
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script src="static/js/main.min.js"></script> <!-- 建议合并JS -->
 </body>
 </html>
