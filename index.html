@@ -186,6 +186,18 @@
             At each training step, we first dynamically select the training phase Z(i.e., identity or motion) to determine the data processing path. The specific data undergoes noise injection and combines with the text embeddings. StageBlender Controller governs two-dimension adapters' contributions in Dual-Aware Block (DA-Block) through time-aware conditioning of current denoising step and fused feature representations. In DA-Block, the training-stage(Z) adapter learns the current information guided by the frozen dimension prior, and employs a regularization strategy to avoid dimensional knowledge leakage, achieving joint training. Both branches engage in residual connections with DiT outputs.  
         </p>
       </div>
+      <div class="has-text-centered">
+        <img src="./img/pipeline-2.png" 
+        alt="DualReal Pipeline"
+        style="width: 100%; 
+                height: auto;
+                border-radius: 4px;">
+      </div>
+      <div class="content mt-4">
+        <p> 
+            Illustration of proposed StageBlender Controller, which employs Adaptive LayerNorm mechanism  modulates text-visual feature based on timestep-conditional embeddings, then maps the feature to multiple groups after residual gated connections. These scaled weight are subsequently routed to their respective DA-Blocks for processing.
+        </p>
+      </div>
     </div>
   </section>
 
