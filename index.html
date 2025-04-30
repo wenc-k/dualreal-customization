@@ -177,10 +177,16 @@
     <div class="content-block">
       <h2 class="title is-3 has-text-centered">How does it work?</h2>
       <div class="has-text-centered">
-        <img src="<image-method-diagram>" alt="Method diagram" style="max-width: 90%;">
+        <img src="./img/pipeline.png" 
+        alt="DualReal Pipeline"
+        style="width: 100%; 
+                height: auto;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       </div>
       <div class="content mt-4">
-        <p>[在此添加方法图示的简要说明，保持2-3句核心要点]</p>
+        <p> At each training step, we first dynamically select the training phase Z(i.e., identity or motion) to determine the data processing path. The specific data undergoes noise injection and combines with the text embeddings. StageBlender Controller governs two-dimension adapters' contributions in Dual-Aware Block (DA-Block) through time-aware conditioning of current denoising step and fused feature representations. In DA-Block, the training-stage(Z) adapter learns the current information guided by the frozen dimension prior, and employs a regularization strategy to avoid dimensional knowledge leakage, achieving joint training. Both branches engage in residual connections with DiT outputs.  
+        </p>
       </div>
     </div>
   </section>
