@@ -423,6 +423,52 @@
   </footer>
 
   <!-- 基础脚本 -->
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script 
+  defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js">
+  document.addEventListener('DOMContentLoaded', () => {
+      const slidesContainer = document.getElementById('slidesContainer');
+      const slides = document.querySelectorAll('.video-slide');
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+
+      let currentIndex = 0;
+      const slideWidth = slides[0].clientWidth;  // 获取幻灯片宽度
+
+      // 初始化容器宽度
+      slidesContainer.style.width = `${slideWidth * slides.length}px`;
+
+      function updateSlidePosition() {
+          slidesContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+          slidesContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+
+      // 上一页
+      prevButton.addEventListener('click', () => {
+          if (currentIndex > 0) {
+              currentIndex--;
+          } else {
+              currentIndex = slides.length - 1; // 循环模式
+          }
+          updateSlidePosition();
+      });
+
+      // 下一页
+      nextButton.addEventListener('click', () => {
+          if (currentIndex < slides.length - 1) {
+              currentIndex++;
+          } else {
+              currentIndex = 0; // 循环模式
+          }
+          updateSlidePosition();
+      });
+
+      // 窗口大小变化时重置
+      window.addEventListener('resize', () => {
+          const newSlideWidth = slides[0].clientWidth;
+          slidesContainer.style.width = `${newSlideWidth * slides.length}px`;
+          slidesContainer.style.transform = `translateX(-${currentIndex * newSlideWidth}px)`;
+      });
+  });
+  </script>
 </body>
 </html>
