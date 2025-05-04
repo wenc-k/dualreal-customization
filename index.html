@@ -136,8 +136,9 @@
     }
 
     .video-slide {
-        flex: 0 0 100%;
-        min-width: 100%; /* 确保占满容器 */
+      min-width: 0; /* 占位，JS 会覆盖 */
+      max-width: none;
+      flex: 0 0 auto;
     }
 
     /* 视频元素样式 */
@@ -423,49 +424,49 @@
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-      const slidesContainer = document.querySelector('#slidesContainer');
-      const slides = document.querySelectorAll('.video-slide');
-      const prevButton = document.querySelector('.prev');
-      const nextButton = document.querySelector('.next');
-      let currentIndex = 0;
-  
-      // 正确计算slide宽度（包含padding和border）
-      const getSlideWidth = () => {
-          const slideStyle = window.getComputedStyle(slides[0]);
-          return slides[0].offsetWidth + 
-                  parseInt(slideStyle.marginLeft) + 
-                  parseInt(slideStyle.marginRight);
-      };
-  
-      // 初始化容器宽度
-      const initSlider = () => {
-          const slideWidth = getSlideWidth();
-          slidesContainer.style.width = `${slideWidth * slides.length}px`;
-      };
-  
-      // 更新轮播位置
-      const updatePosition = () => {
-          slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-      };
-  
-      // 事件处理
-      prevButton.addEventListener('click', () => {
-          if (currentIndex > 0) {
-              currentIndex--;
-              updatePosition();
-          }
+    const slider = document.querySelector('.video-slider');
+    const slidesContainer = document.querySelector('#slidesContainer');
+    const slides = document.querySelectorAll('.video-slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndex = 0;
+
+    // 获取可视区（.video-slider）的宽度
+    const getSlideWidth = () => slider.clientWidth;
+
+    // 初始化：给每个 slide 和容器定宽
+    const initSlider = () => {
+      const slideWidth = getSlideWidth();
+      slides.forEach(slide => {
+        slide.style.minWidth = `${slideWidth}px`;
+        slide.style.maxWidth = `${slideWidth}px`;
       });
-  
-      nextButton.addEventListener('click', () => {
-          if (currentIndex < slides.length - 1) {
-              currentIndex++;
-              updatePosition();
-          }
-      });
-  
-      // 初始化及窗口调整
-      initSlider();
-      window.addEventListener('resize', initSlider);
+      slidesContainer.style.width = `${slideWidth * slides.length}px`;
+      updatePosition();
+    };
+
+    // 更新位置：按像素平移
+    const updatePosition = () => {
+      const slideWidth = getSlideWidth();
+      slidesContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    };
+
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updatePosition();
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updatePosition();
+      }
+    });
+
+    window.addEventListener('resize', initSlider);
+    initSlider();
   });
   </script>
 </body>
