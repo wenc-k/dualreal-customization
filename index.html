@@ -16,6 +16,7 @@
   
   <!-- 简化样式表 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
   <style>
     /* 参考网站基础样式 */
     body {
@@ -96,30 +97,39 @@
         border-radius: 8px;
     }
 
-    /* 导航按钮 */
     .slider-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        /* 调整按钮位置到容器外 */
-        background: rgba(0,0,0,0.8);
-        width: 40px;
-        height: 40px;
+        background: transparent;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        border: 2px solid rgba(100, 116, 139, 0.3); /* 中性灰边框 */
+        color: #64748b; /* slate-500 颜色 */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 10;
+        cursor: pointer;
+        backdrop-filter: blur(4px); /* 背景模糊效果 */
     }
-
 
     .slider-button:hover {
-        background: rgba(0,0,0,0.8);
+        border-color: #3b82f6; /* 品牌蓝色 */
+        color: #3b82f6;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
     }
 
-    .prev { left: -50px; }
-    .next { right: -50px; }
+    .slider-button:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+
+    .prev { left: -60px; }
+    .next { right: -60px; }
 
     .video-section {
         position: relative;
@@ -138,16 +148,19 @@
     }
         
     /* 响应式调整 */
-
     @media (max-width: 768px) {
-        .video-slider {
-            padding: 0 30px;
-        }
         .slider-button {
-            width: 35px;
-            height: 35px;
-            left: -30px;
-            right: -30px;
+            width: 40px;
+            height: 40px;
+            border-width: 1.5px;
+        }
+        
+        .prev {
+            left: -20px;
+        }
+        
+        .next {
+            right: -20px;
         }
     }
 
@@ -179,6 +192,20 @@
     }
 
   </style>
+
+  <!-- 在按钮标签中添加矢量图标 -->
+  <button class="slider-button prev">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+
+  <button class="slider-button next">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
 </head>
 
 <body>
