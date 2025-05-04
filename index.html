@@ -82,9 +82,11 @@
     
     /* 视频容器样式 */
     .slides-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
+        width: 100%;
+        overflow: hidden;  /* 仅容器内部隐藏溢出 */
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
 
     /* 单个视频项 */
     .video-slide {
@@ -103,30 +105,29 @@
 
     /* 导航按钮 */
     .slider-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 20px;
-            transition: 0.3s;
-        }
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        /* 调整按钮位置到容器外 */
+        left: -40px;  /* 左侧按钮外移 */
+        right: -40px; /* 右侧按钮外移 */
+        background: rgba(0,0,0,0.8);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
 
     .slider-button:hover {
         background: rgba(0,0,0,0.8);
     }
 
-    .prev {
-            left: 20px;
-        }
-
-    .next {
-        right: 20px;
-    }
+    .prev { left: -40px; }
+    .next { right: -40px; }
 
     .video-section {
         position: relative;
@@ -141,9 +142,23 @@
         overflow: hidden;
         border-radius: 12px; /* 可选圆角 */
         box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 可选阴影 */
+        padding: 0 40px;
     }
         
     /* 响应式调整 */
+
+    @media (max-width: 768px) {
+        .video-slider {
+            padding: 0 30px;
+        }
+        .slider-button {
+            width: 35px;
+            height: 35px;
+            left: -30px;
+            right: -30px;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         .teaser-image {
         margin: 3rem auto;
@@ -304,6 +319,7 @@
     <div class="container">
         <!-- 视频容器保留原有结构 -->
         <div class="video-slider">
+            <h2 class="title is-3 has-text-centered">More Results</h2>
             <div class="slides-container" id="slidesContainer">
                 <!-- 视频项保持不变 -->
                 <div class="video-slide">
@@ -321,8 +337,7 @@
     </div>
   </section>
 
-  
-  <!-- 更多结果 -->
+<!--
   <section class="section" style="background: #f8f9fa;">
     <div class="content-block">
       <h2 class="title is-3 has-text-centered">More Results</h2>
@@ -332,7 +347,7 @@
     </div>
   </section>
 
-<!--
+
   <section class="section" style="background: #f8f9fa;">
     <div class="content-block">
       <h2 class="title is-3 has-text-centered">Citation</h2>
