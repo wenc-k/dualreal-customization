@@ -205,8 +205,8 @@
     @media (max-width: 768px) {
     /* 1) 外层仍然隐藏超出，保持横向滑动机制 */
     .video-slider {
-      overflow: hidden !important;
-      padding: 0;      /* 去掉多余内边距 */
+      height: auto !important;
+      max-height: none !important;
     }
 
     /* 2) 滑动容器继续 flex 布局 */
@@ -217,17 +217,15 @@
     
     /* 3) 每个 slide 占满整个可视宽度 */
     .slide-item {
-      min-width: 100% !important;
-      max-width: 100% !important;
-      flex: 0 0 100% !important;
-      box-sizing: border-box;
-      padding: 0 1rem; /* 根据需要给左右留点空隙 */
+      padding: 0 !important;
     }
 
     /* 视频本身也铺满 */
     .slide-item video {
       width: 100% !important;
       height: auto !important;
+      aspect-ratio: 16 / 9 !important;
+      max-height: calc(100vw * 9 / 16) !important;
       object-fit: contain;
     }
 
