@@ -129,7 +129,8 @@
 
     .video-slider {
         position: relative;
-        max-width: 400px;
+        max-width: 800px;
+        min-width: auto;  /* 移除冲突设置 */
         margin: 0 auto;
         padding: 0 60px; /* 为按钮留出空间 */
         overflow: hidden; /* 添加溢出隐藏 */
@@ -137,15 +138,14 @@
 
     .video-slide {
         flex: 0 0 100%;
-        min-width: 80%; /* 确保占满容器 */
-        padding: 0 10px; /* 增加内边距 */
-        box-sizing: border-box; /* 包含padding */
+        min-width: 100%; /* 确保占满容器 */
+        padding: 0 ; /* 增加内边距 */
     }
 
     /* 视频元素样式 */
     video {
-        width: 80%; /* 改为100%宽度 */
-        max-height: auto; /* 增加最大高度 */
+        width: 100%; /* 改为100%宽度 */
+        height: auto; /* 增加最大高度 */
         object-fit: contain; /* 保持比例 */
     }
         
@@ -441,8 +441,11 @@
   
       // 初始化容器宽度
       const initSlider = () => {
-          const slideWidth = getSlideWidth();
-          slidesContainer.style.width = `${slideWidth * slides.length}px`;
+        const containerWidth = document.querySelector('.video-slider').offsetWidth;
+        slides.forEach(slide => {
+          slide.style.width = `${containerWidth}px`;
+        });
+        slidesContainer.style.width = `${containerWidth * slides.length}px`;
       };
   
       // 更新轮播位置
