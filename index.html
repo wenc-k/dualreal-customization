@@ -143,7 +143,7 @@
 
     /* 视频元素样式 */
     video {
-        width: 80%; /* 改为100%宽度 */
+        width: 100%; /* 改为100%宽度 */
         height: auto; /* 增加最大高度 */
         object-fit: contain; /* 保持比例 */
     }
@@ -335,31 +335,50 @@
         <!-- 视频容器保留原有结构 -->
         <div class="video-slider">
             <div class="slides-container" id="slidesContainer">
-                <!-- 视频项保持不变 -->
-                <div class="video-slide">
-                    <video controls>
-                        <source src="videos/case3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-slide">
+                <div class="slide-item">
                   <video controls>
-                      <source src="videos/case5.mp4" type="video/mp4">
+                    <source src="videos/case3.mp4" type="video/mp4">
                   </video>
+                  <div class="slide-extra">
+                    <img src="img/ablation.png" alt="Case3 Thumbnail">
+                    <p>Custom motion result for Case 3 demonstrating smooth transitions.</p>
+                  </div>
                 </div>
-                <div class="video-slide">
+                <div class="slide-item">
                   <video controls>
-                      <source src="videos/case8.mp4" type="video/mp4">
+                    <source src="videos/case5.mp4" type="video/mp4">
                   </video>
+                  <div class="slide-extra">
+                    <img src="img/ablation.png" alt="Case5 Thumbnail">
+                    <p>Custom motion result for Case 5 demonstrating smooth transitions.</p>
+                  </div>
                 </div>
-                <div class="video-slide">
+                <div class="slide-item">
                   <video controls>
-                      <source src="videos/case10.mp4" type="video/mp4">
+                    <source src="videos/case8.mp4" type="video/mp4">
                   </video>
+                  <div class="slide-extra">
+                    <img src="img/ablation.png" alt="Case8 Thumbnail">
+                    <p>Custom motion result for Case 8 demonstrating smooth transitions.</p>
+                  </div>
                 </div>
-                <div class="video-slide">
+                <div class="slide-item">
                   <video controls>
-                      <source src="videos/case12.mp4" type="video/mp4">
+                    <source src="videos/case10.mp4" type="video/mp4">
                   </video>
+                  <div class="slide-extra">
+                    <img src="img/ablation.png" alt="Case10 Thumbnail">
+                    <p>Custom motion result for Case 10 demonstrating smooth transitions.</p>
+                  </div>
+                </div>
+                <div class="slide-item">
+                  <video controls>
+                    <source src="videos/case12.mp4" type="video/mp4">
+                  </video>
+                  <div class="slide-extra">
+                    <img src="img/ablation.png" alt="Case12 Thumbnail">
+                    <p>Custom motion result for Case 12 demonstrating smooth transitions.</p>
+                  </div>
                 </div>
             </div>
             <!-- 导航按钮 -->
