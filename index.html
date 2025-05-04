@@ -79,14 +79,6 @@
         font-size: 1.1rem;     /* 增大字体 */
         margin-top: 1.5rem;     /* 增加间距 */
     }
-
-    /* 轮播容器样式 */
-    .video-slider {
-          position: relative;
-          max-width: 800px;
-          margin: 50px auto;
-          overflow: hidden;
-      }
     
     /* 视频容器样式 */
     .slides-container {
@@ -134,6 +126,21 @@
 
     .next {
         right: 20px;
+    }
+
+    .video-section {
+        position: relative;
+        padding: 4rem 0; /* 保持与Bulma的section一致 */
+        background: #f8f9fa; /* 可选背景色 */
+    }
+
+    .video-slider {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto; /* 居中 */
+        overflow: hidden;
+        border-radius: 12px; /* 可选圆角 */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 可选阴影 */
     }
         
     /* 响应式调整 */
