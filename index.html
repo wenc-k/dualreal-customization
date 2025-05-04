@@ -175,6 +175,30 @@
       color: #555;
     }
 
+    /* dots 容器 居中，给点与点之间留白 */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+    }
+
+    /* 单个小点 */
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      background: #ccc;
+      border-radius: 50%;
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+
+    /* 当前激活的小点 */
+    .slider-dot.active {
+      background: #3b82f6;
+      transform: scale(1.4);
+    }
+
     /* 响应式调整 */
     @media (max-width: 768px) {
         .video-slider {
@@ -439,6 +463,9 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
             </button>
+
+            <!-- 进度指示小点 -->
+            <div class="slider-dots" id="sliderDots"></div>
         </div>
     </div>
   </section>
@@ -489,45 +516,58 @@
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const slider = document.querySelector('.video-slider');
-    const slidesContainer = document.querySelector('#slidesContainer');
-    const slides = document.querySelectorAll('.slide-item');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
+    const slider    = document.querySelector('.video-slider');
+    const container = document.querySelector('#slidesContainer');
+    const slides    = Array.from(document.querySelectorAll('.slide-item'));
+    const prevBtn   = document.querySelector('.prev');
+    const nextBtn   = document.querySelector('.next');
+    const dotsWrap  = document.querySelector('#sliderDots');
     let currentIndex = 0;
 
-    // 获取可视区（.video-slider）的宽度
     const getSlideWidth = () => slider.clientWidth;
 
-    // 初始化：给每个 slide 和容器定宽
-    const initSlider = () => {
-      const slideWidth = getSlideWidth();
-      slides.forEach(slide => {
-        slide.style.minWidth = `${slideWidth}px`;
-        slide.style.maxWidth = `${slideWidth}px`;
+    // 渲染 slider 和 slide 宽度
+    function initSlider() {
+      const w = getSlideWidth();
+      slides.forEach(s => {
+        s.style.minWidth = `${w}px`;
+        s.style.maxWidth = `${w}px`;
       });
-      slidesContainer.style.width = `${slideWidth * slides.length}px`;
-      updatePosition();
-    };
+      container.style.width = `${w * slides.length}px`;
+      initDots();      // ← 初始化小点
+      updateSlider();  // ← 更新位置 & 高亮小点
+    }
 
-    // 更新位置：按像素平移
-    const updatePosition = () => {
-      const slideWidth = getSlideWidth();
-      slidesContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    };
+    // 创建小点
+    function initDots() {
+      dotsWrap.innerHTML = ''; // 先清空
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.classList.add('slider-dot');
+        dot.addEventListener('click', () => {
+          currentIndex = idx;
+          updateSlider();
+        });
+        dotsWrap.appendChild(dot);
+      });
+    }
 
-    prevButton.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updatePosition();
-      }
+    // 移动 slider 并高亮对应小点
+    function updateSlider() {
+      const w = getSlideWidth();
+      container.style.transform = `translateX(-${currentIndex * w}px)`;
+      // 更新小点
+      const allDots = dotsWrap.querySelectorAll('.slider-dot');
+      allDots.forEach((d, i) => {
+        d.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) currentIndex--, updateSlider();
     });
-
-    nextButton.addEventListener('click', () => {
-      if (currentIndex < slides.length - 1) {
-        currentIndex++;
-        updatePosition();
-      }
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) currentIndex++, updateSlider();
     });
 
     window.addEventListener('resize', initSlider);
