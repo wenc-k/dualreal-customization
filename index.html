@@ -203,39 +203,46 @@
 
     /* 响应式调整 */
     @media (max-width: 768px) {
-    /* 修复容器布局 */
+    /* 1) 外层仍然隐藏超出，保持横向滑动机制 */
     .video-slider {
-      display: block !important;    /* 强制块级排列 */
-      white-space: normal !important; /* 防止行内元素排列 */
-      overflow: visible;
-      padding: 0;
+      overflow: hidden !important;
+      padding: 0;      /* 去掉多余内边距 */
     }
 
-    /* 调整按钮定位方式 */
-    .slider-button {
-      width: 36px;
-      height: 36px;
-      position: fixed;  /* 改为固定定位防挤压 */
+    /* 2) 滑动容器继续 flex 布局 */
+    .slides-container {
+      display: flex !important;
+      transition: transform 0.5s ease-in-out;
     }
-
-    /* 视频项宽度控制 */
+    
+    /* 3) 每个 slide 占满整个可视宽度 */
     .slide-item {
-      width: 100% !important;    /* 强制单列显示 */
-      margin: 10px 0 !important; /* 添加间距 */
-      display: block !important; /* 块级排列 */
-      float: none !important;    /* 清除浮动 */
+      min-width: 100% !important;
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      box-sizing: border-box;
+      padding: 0 1rem; /* 根据需要给左右留点空隙 */
     }
 
-    /* 保持视频比例 */
+    /* 视频本身也铺满 */
     .slide-item video {
       width: 100% !important;
       height: auto !important;
-      aspect-ratio: 16/9;        /* 保持视频比例 */
-      object-fit: cover;
-      background: black;
+      object-fit: contain;
     }
-  }
 
+    /* 按钮保持绝对定位在左右两侧 */
+    .slider-button {
+      position: absolute !important;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      z-index: 20;
+    }
+    .prev { left: 8px; }
+    .next { right: 8px; }
+  }
   </style>
 </head>
 
