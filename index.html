@@ -83,7 +83,6 @@
     
     /* 视频容器样式 */
     .slides-container {
-        width: 100%;
         display: flex;
         transition: transform 0.5s ease-in-out;
     }
@@ -104,6 +103,7 @@
         z-index: 10;
         cursor: pointer;
         transition: all 0.3s ease;
+        margin: 0 5px;
     }
 
     .slider-button:hover {
@@ -130,23 +130,21 @@
     .video-slider {
         position: relative;
         max-width: 800px;
-        min-width: auto;  /* 移除冲突设置 */
         margin: 0 auto;
-        padding: 0 60px; /* 为按钮留出空间 */
+        /* padding: 0 60px;  为按钮留出空间 */
         overflow: hidden; /* 添加溢出隐藏 */
     }
 
     .video-slide {
         flex: 0 0 100%;
         min-width: 100%; /* 确保占满容器 */
-        padding: 0 ; /* 增加内边距 */
     }
 
     /* 视频元素样式 */
     video {
         width: 100%; /* 改为100%宽度 */
         height: auto; /* 增加最大高度 */
-        object-fit: cover; /* 保持比例 */
+        object-fit: contain; /* 保持比例 */
     }
         
     /* 响应式调整 */
