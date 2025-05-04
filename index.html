@@ -201,34 +201,38 @@
 
     /* 响应式调整 */
     @media (max-width: 768px) {
-      /* 让按钮不被裁剪 */
-      .video-slider {
-        overflow: visible !important;
-        padding: 0;              /* 去掉不必要的内边距 */
-      }
-
-      /* 恢复按钮正常位置 */
-      .slider-button {
-        width: 36px;
-        height: 36px;
-      }
-      .prev, .next {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .prev { left: 8px !important; }
-      .next { right: 8px !important; }
-
-      /* 视频全宽显示，保持原始比例 */
-      .slide-item video {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: contain;
-        background: black;
-      }
+    /* 修复容器布局 */
+    .video-slider {
+      display: block !important;    /* 强制块级排列 */
+      white-space: normal !important; /* 防止行内元素排列 */
+      overflow: visible;
+      padding: 0;
     }
 
+    /* 调整按钮定位方式 */
+    .slider-button {
+      width: 36px;
+      height: 36px;
+      position: fixed;  /* 改为固定定位防挤压 */
+    }
 
+    /* 视频项宽度控制 */
+    .slide-item {
+      width: 100% !important;    /* 强制单列显示 */
+      margin: 10px 0 !important; /* 添加间距 */
+      display: block !important; /* 块级排列 */
+      float: none !important;    /* 清除浮动 */
+    }
+
+    /* 保持视频比例 */
+    .slide-item video {
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16/9;        /* 保持视频比例 */
+      object-fit: cover;
+      background: black;
+    }
+  }
 
   </style>
 </head>
