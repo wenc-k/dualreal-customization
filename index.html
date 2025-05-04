@@ -84,7 +84,6 @@
     /* 视频容器样式 */
     .slides-container {
         width: 100%;
-        overflow: hidden;  /* 仅容器内部隐藏溢出 */
         display: flex;
         transition: transform 0.5s ease-in-out;
     }
@@ -131,45 +130,42 @@
     .video-slider {
         position: relative;
         max-width: 650px;
-        margin: 0 auto; /* 居中 */
-        /*verflow: visible; */
-        border-radius: 12px; /* 可选圆角 */
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 可选阴影 */
-        padding: 0 40px;
+        margin: 0 auto;
+        padding: 0 60px; /* 为按钮留出空间 */
+        overflow: hidden; /* 添加溢出隐藏 */
     }
 
     .video-slide {
-        display: flex;
-        flex: 0 0 100%; /* 每个slide占满容器宽度 */
-        min-width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.5s; 
+        flex: 0 0 100%;
+        min-width: 100%; /* 确保占满容器 */
+        padding: 0 10px; /* 增加内边距 */
+        box-sizing: border-box; /* 包含padding */
     }
 
     /* 视频元素样式 */
     video {
-        width: 80%;
-        height: auto;
-        max-height: 400px;
-        border-radius: 8px;
+        width: 100%; /* 改为100%宽度 */
+        max-height: 500px; /* 增加最大高度 */
+        object-fit: contain; /* 保持比例 */
     }
         
     /* 响应式调整 */
     @media (max-width: 768px) {
+        .video-slider {
+            padding: 0 40px;
+        }
+        
         .slider-button {
             width: 30px;
             height: 30px;
-            border-width: 1.5px;
         }
         
         .prev {
-            left: -10px;
+            left: 5px;
         }
         
         .next {
-            right: -10px;
+            right: 5px;
         }
     }
 
