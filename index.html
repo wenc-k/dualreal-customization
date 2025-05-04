@@ -80,6 +80,62 @@
         margin-top: 1.5rem;     /* 增加间距 */
     }
 
+    /* 轮播容器样式 */
+    .video-slider {
+          position: relative;
+          max-width: 800px;
+          margin: 50px auto;
+          overflow: hidden;
+      }
+    
+    /* 视频容器样式 */
+    .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+    /* 单个视频项 */
+    .video-slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    /* 视频元素样式 */
+    video {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        border-radius: 8px;
+    }
+
+    /* 导航按钮 */
+    .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+    .slider-button:hover {
+        background: rgba(0,0,0,0.8);
+    }
+
+    .prev {
+            left: 20px;
+        }
+
+    .next {
+        right: 20px;
+    }
+        
     /* 响应式调整 */
     @media screen and (max-width: 768px) {
         .teaser-image {
@@ -236,6 +292,29 @@
     </div>
   </section>
 
+  <!-- 轮播容器改为 section -->
+  <section class="section video-section">
+    <div class="container">
+        <!-- 视频容器保留原有结构 -->
+        <div class="video-slider">
+            <div class="slides-container" id="slidesContainer">
+                <!-- 视频项保持不变 -->
+                <div class="video-slide">
+                    <video controls>
+                        <source src="videos/case1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 其他视频项... -->
+            </div>
+            
+            <!-- 导航按钮 -->
+            <button class="slider-button prev">❮</button>
+            <button class="slider-button next">❯</button>
+        </div>
+    </div>
+  </section>
+
+  
   <!-- 更多结果 -->
   <section class="section" style="background: #f8f9fa;">
     <div class="content-block">
