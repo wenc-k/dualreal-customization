@@ -441,11 +441,8 @@
   
       // 初始化容器宽度
       const initSlider = () => {
-        const containerWidth = document.querySelector('.video-slider').offsetWidth;
-        slides.forEach(slide => {
-          slide.style.width = `${containerWidth}px`;
-        });
-        slidesContainer.style.width = `${containerWidth * slides.length}px`;
+          const slideWidth = getSlideWidth();
+          slidesContainer.style.width = `${slideWidth * slides.length}px`;
       };
   
       // 更新轮播位置
