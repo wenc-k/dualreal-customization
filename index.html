@@ -88,13 +88,6 @@
         transition: transform 0.5s ease-in-out;
     }
 
-    /* 单个视频项 */
-    .video-slide {
-        min-width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-    }
-
     /* 视频元素样式 */
     video {
         width: 100%;
@@ -109,8 +102,6 @@
         top: 50%;
         transform: translateY(-50%);
         /* 调整按钮位置到容器外 */
-        left: -40px;  /* 左侧按钮外移 */
-        right: -40px; /* 右侧按钮外移 */
         background: rgba(0,0,0,0.8);
         width: 40px;
         height: 40px;
@@ -119,6 +110,7 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        z-index: 10;
     }
 
 
@@ -179,6 +171,11 @@
         .teaser-image {
         max-width: 90vw;     /* 在超大屏幕上使用视口单位 */
         }
+    }
+
+    @media (max-width: 768px) {
+      .prev { left: -30px; }
+      .next { right: -30px; }
     }
 
   </style>
