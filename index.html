@@ -119,8 +119,8 @@
     }
 
 
-    .prev { left: -60px; }
-    .next { right: -60px; }
+    .prev { left: 20px; }
+    .next { right: 20px; }
 
     .video-section {
         position: relative;
@@ -201,20 +201,6 @@
     }
 
   </style>
-
-  <!-- 在按钮标签中添加矢量图标 -->
-  <button class="slider-button prev">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-    </svg>
-  </button>
-
-  <button class="slider-button next">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-    </svg>
-  </button>
-
 </head>
 
 <body>
@@ -381,10 +367,18 @@
                   </video>
                 </div>
             </div>
-            
             <!-- 导航按钮 -->
-            <button class="slider-button prev">❮</button>
-            <button class="slider-button next">❯</button>
+            <button class="slider-button prev">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+
+            <button class="slider-button next">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
         </div>
     </div>
   </section>
@@ -434,87 +428,51 @@
   <!-- 基础脚本 -->
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 元素获取容错
-        const getElement = (selector, isAll = false) => {
-            return isAll ? document.querySelectorAll(selector) : document.querySelector(selector);
-        };
-        
-        const slidesContainer = getElement('#slidesContainer');
-        const slides = getElement('.video-slide', true);
-        const prevButton = getElement('.prev');
-        const nextButton = getElement('.next');
-    
-        // 容错检查
-        if (!slidesContainer || slides.length === 0 || !prevButton || !nextButton) {
-            console.error('轮播元素未正确初始化');
-            return;
-        }
-    
-        let currentIndex = 0;
-        let isAnimating = false; // 动画锁定
-    
-        // 精确获取slide宽度
-        const getSlideWidth = () => {
-            const firstSlide = slides[0];
-            return firstSlide.getBoundingClientRect().width;
-        };
-    
-        // 初始化容器宽度
-        const initSlider = () => {
-            const slideWidth = getSlideWidth();
-            slidesContainer.style.width = `${slideWidth * slides.length}px`;
-        };
-    
-        // 更新位置（带边界检测）
-        const updatePosition = () => {
-            if (isAnimating) return;
-            isAnimating = true;
-            
-            const maxIndex = slides.length - 1;
-            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-            
-            slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-            slidesContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    
-            // 动画结束后解锁
-            slidesContainer.ontransitionend = () => isAnimating = false;
-        };
-    
-        // 事件绑定（带节流）
-        const handlePrev = () => {
-            currentIndex--;
-            updatePosition();
-        };
-    
-        const handleNext = () => {
-            currentIndex++;
-            updatePosition();
-        };
-    
-        prevButton.addEventListener('click', handlePrev);
-        nextButton.addEventListener('click', handleNext);
-    
-        // 初始化（延迟确保渲染完成）
-        setTimeout(() => {
-            initSlider();
-            
-            // 视频加载后重新计算
-            getElement('video', true).forEach(video => {
-                video.onloadedmetadata = initSlider;
-            });
-        }, 300);
-    
-        // 响应式处理（带防抖）
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                initSlider();
-                updatePosition();
-            }, 200);
-        });
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+      const slidesContainer = document.querySelector('#slidesContainer');
+      const slides = document.querySelectorAll('.video-slide');
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+      let currentIndex = 0;
+  
+      // 正确计算slide宽度（包含padding和border）
+      const getSlideWidth = () => {
+          const slideStyle = window.getComputedStyle(slides[0]);
+          return slides[0].offsetWidth + 
+                  parseInt(slideStyle.marginLeft) + 
+                  parseInt(slideStyle.marginRight);
+      };
+  
+      // 初始化容器宽度
+      const initSlider = () => {
+          const slideWidth = getSlideWidth();
+          slidesContainer.style.width = `${slideWidth * slides.length}px`;
+      };
+  
+      // 更新轮播位置
+      const updatePosition = () => {
+          slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+      };
+  
+      // 事件处理
+      prevButton.addEventListener('click', () => {
+          if (currentIndex > 0) {
+              currentIndex--;
+              updatePosition();
+          }
+      });
+  
+      nextButton.addEventListener('click', () => {
+          if (currentIndex < slides.length - 1) {
+              currentIndex++;
+              updatePosition();
+          }
+      });
+  
+      // 初始化及窗口调整
+      initSlider();
+      window.addEventListener('resize', initSlider);
+  });
   </script>
 </body>
 </html>
