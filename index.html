@@ -101,19 +101,18 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: transparent;
-        width: 38px;
-        height: 38px;
+        background: rgba(255,255,255,0.9);
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid rgba(100, 116, 139, 0.3); /* 中性灰边框 */
-        color: #64748b; /* slate-500 颜色 */
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
         z-index: 10;
         cursor: pointer;
-        backdrop-filter: blur(4px); /* 背景模糊效果 */
+        transition: all 0.3s ease;
     }
 
     .slider-button:hover {
@@ -139,12 +138,18 @@
 
     .video-slider {
         position: relative;
-        max-width: 500px;
+        max-width: 600px;
         margin: 0 auto; /* 居中 */
-        overflow: visible;
+        overflow: hidden;  /* TODO. */
         border-radius: 12px; /* 可选圆角 */
         box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 可选阴影 */
         padding: 0 40px;
+    }
+
+    .video-slide {
+        flex: 0 0 100%; /* 每个slide占满容器宽度 */
+        min-width: 100%;
+        box-sizing: border-box;
     }
         
     /* 响应式调整 */
