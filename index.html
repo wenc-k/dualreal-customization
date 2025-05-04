@@ -201,22 +201,31 @@
 
     /* 响应式调整 */
     @media (max-width: 768px) {
-        .video-slider {
-            padding: 0 40px;
-        }
-        
-        .slider-button {
-            width: 30px;
-            height: 30px;
-        }
-        
-        .prev {
-            left: 5px;
-        }
-        
-        .next {
-            right: 5px;
-        }
+      /* 让按钮不被裁剪 */
+      .video-slider {
+        overflow: visible !important;
+        padding: 0;              /* 去掉不必要的内边距 */
+      }
+
+      /* 恢复按钮正常位置 */
+      .slider-button {
+        width: 36px;
+        height: 36px;
+      }
+      .prev, .next {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .prev { left: 8px !important; }
+      .next { right: 8px !important; }
+
+      /* 视频全宽显示，保持原始比例 */
+      .slide-item video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
+        background: black;
+      }
     }
 
     @media screen and (max-width: 768px) {
