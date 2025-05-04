@@ -432,41 +432,6 @@
 
   <!-- 基础脚本 -->
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const slidesContainer = document.getElementById('slidesContainer');
-        const slides = document.querySelectorAll('.video-slide');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-    
-        let currentIndex = 0;
-        
-        // 动态计算slide宽度
-        function initSlider() {
-            const slideWidth = slides[0].clientWidth;
-            slidesContainer.style.width = `${slideWidth * slides.length}px`;
-        }
-    
-        function updateSlidePosition() {
-            const slideWidth = slides[0].clientWidth;
-            slidesContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            slidesContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-    
-        // 初始化时和窗口resize时调用
-        initSlider();
-        window.addEventListener('resize', initSlider);
-    
-        prevButton.addEventListener('click', () => {
-            currentIndex = Math.max(currentIndex - 1, 0);
-            updateSlidePosition();
-        });
-    
-        nextButton.addEventListener('click', () => {
-            currentIndex = Math.min(currentIndex + 1, slides.length - 1);
-            updateSlidePosition();
-        });
-    });
-  </script>
+
 </body>
 </html>
